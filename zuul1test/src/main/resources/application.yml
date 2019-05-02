@@ -1,0 +1,54 @@
+  spring.application.name: gatekeeper
+
+  zuul:
+    ignored-headers:
+      Access-Control-Allow-Credentials, Access-Control-Allow-Origin
+    sensitive-headers:
+      Cookie,Set-Cookie,Authorization
+    routes:
+#      simple_request:
+#        path: /simple_request/**
+#        url: http://localhost:8081/service-instances/simple_request
+#        stripPrefix: true
+      zipkin:
+        url: http://127.0.0.1:9411/zipkin
+        stripPrefix: true
+
+  keycloak:
+    auth-server-url: http://localhost:8084/auth
+    resource: zipkin
+    realm: Test
+    ssl-required:  external
+    credentials.secret:  93ed383e-c4c8-4091-9cfc-63a48b960cf4
+    use-resource-role-mappings:  true
+    securityConstraints:
+      - authRoles:
+          - user
+        securityCollections:
+          - patterns:
+              - /zipkin/*
+
+  hystrix:
+    command:
+      default:
+        execution:
+          timeout:
+            enabled: false
+
+  ribbon:
+    ReadTimeout: 600000
+
+  spring:
+    servlet:
+      multipart:
+        max-file-size: 2048MB
+        max-request-size: 4096MB
+
+  server:
+    port: 8765
+    tomcat:
+      max-http-post-size: -1
+
+  endpoints:
+    routes:
+      sensitive: false
