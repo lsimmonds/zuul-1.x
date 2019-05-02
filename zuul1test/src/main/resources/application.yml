@@ -6,10 +6,6 @@
     sensitive-headers:
       Cookie,Set-Cookie,Authorization
     routes:
-#      simple_request:
-#        path: /simple_request/**
-#        url: http://localhost:8081/service-instances/simple_request
-#        stripPrefix: true
       zipkin:
         url: http://127.0.0.1:9411/zipkin
         stripPrefix: true
