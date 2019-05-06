@@ -15,7 +15,7 @@
     resource: zipkin
     realm: Test
     ssl-required:  external
-    credentials.secret:  93ed383e-c4c8-4091-9cfc-63a48b960cf4
+    credentials.secret:  f1d7776a-8a9b-4115-83a6-5558bc01025b
     use-resource-role-mappings:  true
     securityConstraints:
       - authRoles:
